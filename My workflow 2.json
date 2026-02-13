@@ -1,0 +1,151 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -688,
+        -112
+      ],
+      "id": "24a9611f-540c-4ff1-88ff-d80913d8f1d4",
+      "name": "When chat message received",
+      "webhookId": "2b91ee0e-6d49-42cb-a00d-5feb3251727f"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -272,
+        -368
+      ],
+      "id": "4c4695fc-a765-4add-ac73-a68a442a3caf",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        176,
+        224
+      ],
+      "id": "53d5e786-a993-44ac-bcbb-c1c42adf088d",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5b9aa81a-a316-4fcb-94da-edec9d213ed4",
+              "name": "what is ai",
+              "value": "artifical intelligence is a more used for today technology",
+              "type": "string"
+            },
+            {
+              "id": "b9ef7e29-e780-433b-9cff-a3c09f93404b",
+              "name": "what is subset of ai",
+              "value": "machine learning ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        -80
+      ],
+      "id": "95d14a55-a23c-4b86-a582-9f2ec539438d",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -416,
+        -160
+      ],
+      "id": "59b96876-9e19-4c59-9879-87527d7ecf09",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "vND1RV58fh0qa0Ge",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "4c1d33c2-3e73-456d-8fdf-d17e726a4207",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e37bb54e58603638dbd8d9db875d4a0f9341f450dad5a569f90d8983ea73aa74"
+  },
+  "id": "9nph92SHbEAgvB1W",
+  "tags": []
+}
